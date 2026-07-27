@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>📊 Smart Parking Dashboard</h1>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h3>Total Vehicles</h3>
+        <h2>{{ total }}</h2>
+    </div>
+
+    <div class="card">
+        <h3>Currently Parked</h3>
+        <h2>{{ parked }}</h2>
+    </div>
+
+    <div class="card">
+        <h3>Exited Vehicles</h3>
+        <h2>{{ exited }}</h2>
+    </div>
+
+    <div class="card">
+        <h3>Total Revenue</h3>
+        <h2>₹{{ revenue }}</h2>
+    </div>
+
+</div>
+
+<br>
+
+<center>
+
+<a href="/">
+    <button>🏠 Back Home</button>
+</a>
+
+<a href="/vehicles">
+    <button>🚗 View Vehicles</button>
+</a>
+
+<a href="/search">
+    <button>🔍 Search Vehicle</button>
+</a>
+
+</center>
+
+</body>
+</html>

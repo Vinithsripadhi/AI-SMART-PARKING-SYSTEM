@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Parking System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>🚗 Smart Parking System</h1>
+    <p>Parking Management Dashboard</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h3>Total Slots</h3>
+        <h2>{{ total }}</h2>
+    </div>
+
+    <div class="card free">
+        <h3>Available</h3>
+        <h2>{{ available }}</h2>
+    </div>
+
+    <div class="card occupied">
+        <h3>Occupied</h3>
+        <h2>{{ occupied }}</h2>
+    </div>
+
+</div>
+
+<div class="form-box">
+
+    <h2>Add Vehicle</h2>
+
+    <form action="/add_vehicle" method="POST">
+
+        <input
+            type="text"
+            name="vehicle_number"
+            placeholder="Vehicle Number"
+            required
+        >
+
+        <input
+            type="text"
+            name="owner_name"
+            placeholder="Owner Name"
+            required
+        >
+
+        <button type="submit">
+            Park Vehicle
+        </button>
+
+    </form>
+
+</div>
+
+<h2 class="title">
+    Parking Slots
+</h2>
+
+<div class="parking-grid">
+
+{% for slot in slots %}
+
+<div class="slot {% if slot.status=='Free' %}free-slot{% else %}occupied-slot{% endif %}">
+
+    <h3>{{ slot.name }}</h3>
+
+    <p>{{ slot.status }}</p>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<div class="buttons">
+
+    <a href="/search">
+        <button>Search Vehicle</button>
+    </a>
+
+    <a href="/vehicles">
+        <button>View Vehicles</button>
+    </a>
+
+    <a href="/dashboard">
+        <button>Dashboard</button>
+    </a>
+
+</div>
+
+</body>
+</html>

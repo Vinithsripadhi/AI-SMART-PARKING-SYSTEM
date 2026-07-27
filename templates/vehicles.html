@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Vehicles</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>🚗 All Parked Vehicles</h1>
+</header>
+
+<div class="table-container">
+
+<table>
+
+    <tr>
+        <th>ID</th>
+        <th>Vehicle Number</th>
+        <th>Owner Name</th>
+        <th>Slot</th>
+        <th>Entry Time</th>
+        <th>Exit Time</th>
+        <th>Status</th>
+        <th>Parking Fee</th>
+        <th>Action</th>
+    </tr>
+
+    {% for vehicle in vehicles %}
+
+    <tr>
+
+        <td>{{ vehicle["id"] }}</td>
+
+        <td>{{ vehicle["vehicle_number"] }}</td>
+
+        <td>{{ vehicle["owner_name"] }}</td>
+
+        <td>{{ vehicle["slot_number"] }}</td>
+
+        <td>{{ vehicle["entry_time"] }}</td>
+
+        <td>
+            {% if vehicle["exit_time"] %}
+                {{ vehicle["exit_time"] }}
+            {% else %}
+                --
+            {% endif %}
+        </td>
+
+        <td>{{ vehicle["status"] }}</td>
+
+        <td>₹{{ vehicle["parking_fee"] }}</td>
+
+        <td>
+
+            {% if vehicle["status"] == "Parked" %}
+
+            <a href="/exit_vehicle/{{ vehicle['id'] }}">
+                <button>Exit</button>
+            </a>
+
+            {% else %}
+
+            <a href="/delete/{{ vehicle['id'] }}">
+                <button>Delete</button>
+            </a>
+
+            {% endif %}
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+</div>
+
+<br>
+
+<center>
+
+<a href="/">
+    <button>🏠 Back Home</button>
+</a>
+
+</center>
+
+</body>
+</html>

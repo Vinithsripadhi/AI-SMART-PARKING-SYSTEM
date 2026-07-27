@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Vehicle</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>🔍 Search Vehicle</h1>
+</header>
+
+<div class="form-box">
+
+    <form method="POST">
+
+        <input
+            type="text"
+            name="vehicle_number"
+            placeholder="Enter Vehicle Number"
+            required
+        >
+
+        <button type="submit">
+            Search
+        </button>
+
+    </form>
+
+</div>
+
+{% if vehicle %}
+
+<div class="result-box">
+
+    <h2>Vehicle Details</h2>
+
+    <table>
+
+        <tr>
+            <th>Vehicle Number</th>
+            <td>{{ vehicle["vehicle_number"] }}</td>
+        </tr>
+
+        <tr>
+            <th>Owner Name</th>
+            <td>{{ vehicle["owner_name"] }}</td>
+        </tr>
+
+        <tr>
+            <th>Slot Number</th>
+            <td>{{ vehicle["slot_number"] }}</td>
+        </tr>
+
+        <tr>
+            <th>Entry Time</th>
+            <td>{{ vehicle["entry_time"] }}</td>
+        </tr>
+
+        <tr>
+            <th>Exit Time</th>
+            <td>
+                {% if vehicle["exit_time"] %}
+                    {{ vehicle["exit_time"] }}
+                {% else %}
+                    --
+                {% endif %}
+            </td>
+        </tr>
+
+        <tr>
+            <th>Status</th>
+            <td>{{ vehicle["status"] }}</td>
+        </tr>
+
+        <tr>
+            <th>Parking Fee</th>
+            <td>₹{{ vehicle["parking_fee"] }}</td>
+        </tr>
+
+    </table>
+
+</div>
+
+{% elif request.method == "POST" %}
+
+<center>
+    <h3 style="color:red;">Vehicle Not Found!</h3>
+</center>
+
+{% endif %}
+
+<br>
+
+<center>
+
+<a href="/">
+    <button>🏠 Back Home</button>
+</a>
+
+</center>
+
+</body>
+</html>

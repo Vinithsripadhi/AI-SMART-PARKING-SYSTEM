@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual Environment
+venv/
+
+# Database
+parking.db
+*.db-journal
+
+# Images
+test.jpg
+
+# AI Models
+yolov8n.pt
+best.pt
+
+# VS Code
+.vscode/
+
+# Windows
+Thumbs.db
